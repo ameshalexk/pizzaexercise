@@ -6,7 +6,8 @@ import { Component, ComponentFactoryResolver } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public total = 15;
+  public total = 20;
+  public option = '0';
 
   public toppings: any = {
     pepperoni: 0.50,
@@ -37,5 +38,9 @@ export class AppComponent {
       this.price.splice(this.price.indexOf(this.toppings[val]), 1);
       this.total = this.total - this.toppings[val];
     }
+  }
+  changeOption(val: string) {
+    this.option = val;
+
   }
 }

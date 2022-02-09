@@ -5,7 +5,7 @@
   </span>
 </div>
 <br>
-<ng-container *ngIf="total <= 20; then first; else second">
+<ng-container *ngIf="total > 20; then first; else second">
 </ng-container>
 <ng-template #first>
   <div>
@@ -16,9 +16,24 @@
   <div>
     <div class="main">Total : {{ total | currency: 'USD' }}
       <div><b>Special offer </b>- <br>
-        if your order exceeds $20 :
-        Would you like a discount of 10%?
-        or would you like a $3 off this order?
+        your order exceeds $20 : <br>
+        <input type="radio" name="option" (change)="changeOption('1')"> Would you like a discount of 10%? <br>
+        <input type="radio" name="option" (change)="changeOption('2')"> or would you like a $3 off this order?
+        <ng-template [ngIf]="option === '0'">
+          <div>
+            <div class="main">Total : {{ total | currency: 'USD' }}</div>
+          </div>
+        </ng-template>
+        <ng-template [ngIf]="option === '1'">
+          <div>
+            <div class="main">Total : {{ total * 0.9 | currency: 'USD' }}</div>
+          </div>
+        </ng-template>
+        <ng-template [ngIf]="option === '2'">
+          <div>
+            <div class="main">Total : {{ total -3 | currency: 'USD' }}</div>
+          </div>
+        </ng-template>
       </div>
     </div>
   </div>
