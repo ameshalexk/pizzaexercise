@@ -6,7 +6,7 @@ import { Component, ComponentFactoryResolver } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public total = 20;
+  public total = 15;
   public option = '0';
 
   public toppings: any = {
