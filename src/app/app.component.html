@@ -5,7 +5,7 @@
   </span>
 </div>
 <br>
-<ng-container *ngIf="total > 20; then first; else second">
+<ng-container *ngIf="total < 20; then first; else second">
 </ng-container>
 <ng-template #first>
   <div>
@@ -13,29 +13,77 @@
   </div>
 </ng-template>
 <ng-template #second>
+  <div class="main">Total : {{ total | currency: 'USD' }}</div>
   <div>
-    <div class="main">Total : {{ total | currency: 'USD' }}
-      <div><b>Special offer </b>- <br>
-        your order exceeds $20 : <br>
-        <input type="radio" name="option" (change)="changeOption('1')"> Would you like a discount of 10%? <br>
-        <input type="radio" name="option" (change)="changeOption('2')"> or would you like a $3 off this order?
-        <ng-template [ngIf]="option === '0'">
-          <div>
-            <div class="main">Total : {{ total | currency: 'USD' }}</div>
-          </div>
-        </ng-template>
-        <ng-template [ngIf]="option === '1'">
-          <div>
-            <div class="main">Total : {{ total * 0.9 | currency: 'USD' }}</div>
-          </div>
-        </ng-template>
-        <ng-template [ngIf]="option === '2'">
-          <div>
-            <div class="main">Total : {{ total -3 | currency: 'USD' }}</div>
-          </div>
-        </ng-template>
-      </div>
+    <div><b>Special offer </b>- <br>
+      your order exceeds $20 : <br>
+      <input type="radio" value="1" name="option" #selectField1 (change)="changeOption(selectField1)"> Would you like
+      a
+      discount of 10%? <br>
+      <input type="radio" value="2" name="option" #selectField2 (change)="changeOption(selectField2)"> or would you
+      like a $3
+      off this order?
     </div>
   </div>
 </ng-template>
 <br>
+
+
+<ng-container *ngIf="option === 1; then first1;">
+</ng-container>
+<ng-template #first1>
+  <div>
+    <div class="main">Grand Total payable after discount : {{ total *0.9| currency: 'USD' }}</div>
+  </div>
+</ng-template>
+<ng-container *ngIf="option === 2; then second2;">
+</ng-container>
+<ng-template #second2>
+  <div>
+    <div class="main">Grand Total payable after discount : {{ total -3| currency: 'USD' }}</div>
+  </div>
+</ng-template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <ng-container *ngIf="option === '0'; then first; else second">
+</ng-container>
+<ng-template #first>
+  <div>
+    <div class="main">Total : {{ total * 0.9 | currency: 'USD' }}</div>
+  </div>
+  <div><b>Special offer </b>- <br>
+    your order exceeds $20 : <br>
+    <input type="radio" name="option" (change)="changeOption('1')"> Would you like a discount of 10%? <br>
+    <input type="radio" name="option" (change)="changeOption('2')"> or would you like a $3 off this order?
+  </div>
+  <ng-container *ngIf="option === '0'; then first; else second">
+  </ng-container>
+  <ng-template #first>
+    <div>
+      <div class="main">Total : {{ total *0.9| currency: 'USD' }}</div>
+    </div>
+  </ng-template>
+  <ng-template #second>
+    <div>
+      <div class="main">Total : {{ total -3| currency: 'USD' }}</div>
+    </div>
+  </ng-template>
+
+
+</ng-template>
+<ng-template #second>
+  <div>
+    <div class="main">Total : {{ total | currency: 'USD' }}</div>
+  </div>
+</ng-template> -->

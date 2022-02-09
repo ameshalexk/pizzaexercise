@@ -7,7 +7,7 @@ import { Component, ComponentFactoryResolver } from '@angular/core';
 })
 export class AppComponent {
   public total = 15;
-  public option = '0';
+  public option: number = 0;
 
   public toppings: any = {
     pepperoni: 0.50,
@@ -27,6 +27,7 @@ export class AppComponent {
 
   public selection = [] as any;
   public price = [] as any;
+  public jobs = ["Would you like a discount of 10%?", "or would you like a $3 off this order?"] as any;
 
   changeSelection(val: string) {
     if (this.selection.indexOf(val) === -1 || this.price.indexOf(this.toppings[val]) === -1) {
@@ -39,8 +40,7 @@ export class AppComponent {
       this.total = this.total - this.toppings[val];
     }
   }
-  changeOption(val: string) {
-    this.option = val;
-
+  changeOption(val: any) {
+    this.option = Number.parseInt(val.value);
   }
 }
