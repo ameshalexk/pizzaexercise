@@ -1,7 +1,7 @@
 <div>
   <span *ngFor=" let topping of toppingsList;
   ">
-    <input type="checkbox" name={{topping}} id={{topping}} (change)="changeSelection(topping)"> {{topping}}
+    <input type="checkbox" name={{topping}} id={{topping}} (change)="changeSelection(topping)"> {{topping | uppercase }}
   </span>
 </div>
 <br>
@@ -9,18 +9,18 @@
 </ng-container>
 <ng-template #first>
   <div>
-    <p>Total : {{total}}</p>
+    <div class="main">Total : {{ total | currency: 'USD' }}</div>
   </div>
 </ng-template>
 <ng-template #second>
   <div>
-    <p>Total : {{total}}</p>
-    <p>Would you like a discount of 10%?</p>
-    <p>or would you like a $3 off this order?</p>
+    <div class="main">Total : {{ total | currency: 'USD' }}
+      <div><b>Special offer </b>- <br>
+        if your order exceeds $20 :
+        Would you like a discount of 10%?
+        or would you like a $3 off this order?
+      </div>
+    </div>
   </div>
 </ng-template>
-
-
-
-
 <br>

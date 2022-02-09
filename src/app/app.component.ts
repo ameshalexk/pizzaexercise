@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ComponentFactoryResolver } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public total = 15;
-
 
   public toppings: any = {
     pepperoni: 0.50,
@@ -23,25 +22,20 @@ export class AppComponent {
     sauce: 0,
   }
 
-
   public toppingsList = Object.keys(this.toppings);
-  public toppingsListVal = Object.values(this.toppings);
 
   public selection = [] as any;
   public price = [] as any;
 
   changeSelection(val: string) {
-    if (!this.selection[val] && this.selection.indexOf(val) === -1) {
+    if (this.selection.indexOf(val) === -1 || this.price.indexOf(this.toppings[val]) === -1) {
       this.selection.push(val);
+      this.price.push(this.toppings[val]);
       this.total = this.total + this.toppings[val];
-
-    } else {
-      this.selection.pop(val);
+    } else if (this.selection.indexOf(val) >= 0 && this.price.indexOf(this.toppings[val]) >= 0) {
+      this.selection.splice(this.selection.indexOf(val), 1);
+      this.price.splice(this.price.indexOf(this.toppings[val]), 1);
       this.total = this.total - this.toppings[val];
-
     }
   }
-
-
-
 }

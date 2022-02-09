@@ -3,8 +3,6 @@
   background-color: wheat;
 }
 
-
-
 p {
   border: 1px solid black;
   padding: 10px;
@@ -15,4 +13,9 @@ p {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+.main {
+  display: table;
+  margin: 0 auto;
 }
